@@ -1,0 +1,48 @@
+  <div>
+    <h1>Paper Downloader</h1>
+    <div class="controller">
+      <div class="version">
+        <span>Version: </span>
+        <select id="select-version" name="select-version" v-model="version">
+          <option disabled value="selected">Please select one</option>
+          <option v-for="v in versions.data.value.versions"> {{ v }}</option>
+        </select>
+      </div>
+      <div class="build">
+        <select name="select-build" id="select-build" v-model="build">
+          <option value="latest">latest</option>
+          <option v-for="b in builds"> {{ b }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="result">
+      <div class="download-url">
+
+      </div>
+      <button class="btn-download">Download</button>
+      <div class="output">
+
+      </div>
+    </div>
+  </div>
+
+export default defineComponent({
+  name: 'PaperDownloader',
+  data(){
+    return {
+      // version: '',
+      // build: 'latest',
+      // url: ''
+    }
+  },
+  methods: {
+    // async getBuilds(ver: string){
+    //   this.builds = await useFetch<Builds>(`https://papermc.io/api/v2/projects/paper/versions/${ver}`)
+    // }
+  },
+  watch: {
+    version: function(newVer) {
+      this.getBuilds(newVer)
+    }
+  }
+})
