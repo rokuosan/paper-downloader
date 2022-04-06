@@ -1,21 +1,14 @@
-
 import { Ref } from "vue"
 
-type SectionType =
-    | 'Version'
-    | 'Build'
-    | 'Check'
-
 export const useSection = () => {
-    const section = useState<SectionType>('section', () => ('Version'))
+    const section = useState('section', () => (1))
 
     return {
         section: readonly(section),
         setSection: setSection(section)
     }
-
 }
 
-export const setSection = (section: SectionType) => (to: SectionType) => {
-    section = to
+export const setSection = (section: Ref<number>) => (to: number) => {
+    section.value = to
 }
